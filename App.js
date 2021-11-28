@@ -20,6 +20,30 @@ function Tab2Screen() {
   );
 }
 
+function Tab3Screen() {
+  return (
+    <View>
+      <Text>스크린3</Text>
+    </View>
+  );
+}
+
+function Tab4Screen() {
+  return (
+    <View>
+      <Text>스크린4</Text>
+    </View>
+  );
+}
+
+function Tab5Screen() {
+  return (
+    <View>
+      <Text>스크린5</Text>
+    </View>
+  );
+}
+
 const BottomTab = createBottomTabNavigator();
 function BottomTabNavigator() {
   return (
@@ -28,6 +52,8 @@ function BottomTabNavigator() {
         name="Tab1"
         component={Tab1Screen}
         options={{
+          title: '받은 요청',
+          tabBarLabel: '받은 요청',
           headerTitleAlign: 'center'
         }}
       />
@@ -35,8 +61,35 @@ function BottomTabNavigator() {
         name="Tab2"
         component={Tab2Screen}
         options={{
-          title: 'Title2',
-          tabBarLabel: 'TabBarLabel2',
+          title: '바로 견적',
+          tabBarLabel: '바로 견적',
+          headerTitleAlign: 'center'
+        }}
+      />
+      <BottomTab.Screen
+        name="Tab3"
+        component={Tab3Screen}
+        options={{
+          title: '채팅',
+          tabBarLabel: '채팅',
+          headerTitleAlign: 'center'
+        }}
+      />
+      <BottomTab.Screen
+        name="Tab4"
+        component={Tab4Screen}
+        options={{
+          title: '프로필',
+          tabBarLabel: '프로필',
+          headerTitleAlign: 'center'
+        }}
+      />
+      <BottomTab.Screen
+        name="Tab5"
+        component={Tab5Screen}
+        options={{
+          title: '마이페이지',
+          tabBarLabel: '마이페이지',
           headerTitleAlign: 'center'
         }}
       />
