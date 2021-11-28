@@ -1,48 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-function Tab1Screen() {
-  return (
-    <View>
-      <Text>스크린1</Text>
-    </View>
-  );
-}
-
-function Tab2Screen() {
-  return (
-    <View>
-      <Text>스크린2</Text>
-    </View>
-  );
-}
-
-function Tab3Screen() {
-  return (
-    <View>
-      <Text>스크린3</Text>
-    </View>
-  );
-}
-
-function Tab4Screen() {
-  return (
-    <View>
-      <Text>스크린4</Text>
-    </View>
-  );
-}
-
-function Tab5Screen() {
-  return (
-    <View>
-      <Text>스크린5</Text>
-    </View>
-  );
-}
+import Tab1Screen from './screens/Tab1Screen';
+import Tab2Screen from './screens/Tab2Screen';
+import Tab3Screen from './screens/Tab3Screen';
+import Tab4Screen from './screens/Tab4Screen';
+import Tab5Screen from './screens/Tab5Screen';
 
 const BottomTab = createBottomTabNavigator();
 function BottomTabNavigator() {
