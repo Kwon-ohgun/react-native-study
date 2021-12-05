@@ -1,10 +1,13 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
 
-export default function Tab1Screen() {
+export default function Tab1Screen({ navigation }) {
   return (
     <View>
-      <Text>스크린1</Text>
+      <Button
+        title="Tab1Detail"
+        onPress={() => navigation.navigate('Tab1Detail')}
+      />
     </View>
   );
 }

@@ -7,6 +7,7 @@ import Tab2Screen from './screens/Tab2Screen';
 import Tab3Screen from './screens/Tab3Screen';
 import Tab4Screen from './screens/Tab4Screen';
 import Tab5Screen from './screens/Tab5Screen';
+import Tab1Detail from './screens/Tab1Detail';
 
 const BottomTab = createBottomTabNavigator();
 function BottomTabNavigator() {
@@ -67,6 +68,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="Tab1Detail" component={Tab1Detail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
