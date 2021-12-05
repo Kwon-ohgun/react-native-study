@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { FontAwesome } from '@expo/vector-icons';
 import Tab1Screen from './screens/Tab1Screen';
 import Tab2Screen from './screens/Tab2Screen';
 import Tab3Screen from './screens/Tab3Screen';
@@ -19,7 +20,11 @@ function BottomTabNavigator() {
         options={{
           title: '받은 요청',
           tabBarLabel: '받은 요청',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          tabBarIcon: () => <FontAwesome
+            name="code"
+            size={25}
+          />
         }}
       />
       <BottomTab.Screen
@@ -28,7 +33,11 @@ function BottomTabNavigator() {
         options={{
           title: '바로 견적',
           tabBarLabel: '바로 견적',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          tabBarIcon: () => <FontAwesome
+            name="usb"
+            size={25}
+          />
         }}
       />
       <BottomTab.Screen
@@ -37,7 +46,11 @@ function BottomTabNavigator() {
         options={{
           title: '채팅',
           tabBarLabel: '채팅',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          tabBarIcon: () => <FontAwesome
+            name="bell"
+            size={25}
+          />
         }}
       />
       <BottomTab.Screen
@@ -46,7 +59,11 @@ function BottomTabNavigator() {
         options={{
           title: '프로필',
           tabBarLabel: '프로필',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          tabBarIcon: () => <FontAwesome
+            name="chevron-down"
+            size={25}
+          />
         }}
       />
       <BottomTab.Screen
@@ -55,7 +72,11 @@ function BottomTabNavigator() {
         options={{
           title: '마이페이지',
           tabBarLabel: '마이페이지',
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          tabBarIcon: () => <FontAwesome
+            name="barcode"
+            size={24}
+          />
         }}
       />
     </BottomTab.Navigator>
