@@ -1,10 +1,13 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Button, View } from 'react-native';
 
-export default function Tab2Screen() {
+export default function Tab2Screen({ navigation }) {
   return (
     <View>
-      <Text>스크린2</Text>
+      <Button
+        title="Open Modal1"
+        onPress={() => navigation.navigate('Modal1')}
+      />
     </View>
   );
 }
