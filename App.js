@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { Pressable } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
@@ -93,10 +94,19 @@ export default function App() {
         <Stack.Screen name="Tab1Detail" component={Tab1Detail} />
         <Stack.Group screenOptions={{ presentation: 'modal' }}>
           <Stack.Screen name="Modal1" component={Modal1Screen}
-            options={{
+            options={({ navigation }) => ({
               title: '모달창',
-              headerTitleAlign: 'center'
-            }}
+              headerTitleAlign: 'center',
+              headerLeft: () => (<></>),
+              headerRight: () => (
+                <Pressable onPress={() => navigation.goBack()}>
+                  <FontAwesome
+                    name="close"
+                    size={25}
+                  />
+                </Pressable>
+              )
+            })}
           />
         </Stack.Group>
       </Stack.Navigator>
