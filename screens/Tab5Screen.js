@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Tab5Screen() {
+export default function Tab5Screen({ navigation }) {
   return (
     <>
       <View name="thead" style={styles.thead}>
@@ -45,7 +45,9 @@ export default function Tab5Screen() {
         <View style={styles.row}>
           <Text style={styles.column}>홍길동</Text>
           <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
+          <Pressable style={styles.column} onPress={() => {
+            navigation.navigate('ModalUpdate')
+          }}>
             <FontAwesome
               name="edit"
               size={24}
@@ -404,6 +406,34 @@ export function ModalCreate({ navigation }) {
               name="pencil"
               size={24}
               style={[styles.column, {padding: 8, color: '#4285F4', marginRight: 24}]}
+            />
+          </Pressable>
+        </View>
+      </View>
+    </>
+  );
+}
+
+export function ModalUpdate({ navigation }) {
+  return (
+    <>
+      <View name="thead" style={styles.thead}>
+        <View style={styles.row}>
+          <Text style={styles.column}>이름</Text>
+          <Text style={styles.column}>나이</Text>
+          <Text style={styles.column}>수정</Text>
+        </View>
+      </View>
+      <View name="tbody" style={styles.tbody}>
+        <View style={styles.row}>
+          <TextInput style={[styles.column, styles.borderStyle]}>이름</TextInput>
+          <TextInput style={[styles.column, styles.borderStyle
+          ]}>나이</TextInput>
+          <Pressable style={styles.column} onPress={() => {}}>
+            <FontAwesome
+              name="edit"
+              size={24}
+              style={[styles.column, {padding: 8, color: '#FBBC05', marginRight: 24}]}
             />
           </Pressable>
         </View>

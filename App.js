@@ -8,7 +8,7 @@ import Tab1Screen from './screens/Tab1Screen';
 import Tab2Screen from './screens/Tab2Screen';
 import Tab3Screen from './screens/Tab3Screen';
 import Tab4Screen from './screens/Tab4Screen';
-import Tab5Screen, { ModalCreate } from './screens/Tab5Screen';
+import Tab5Screen, { ModalCreate, ModalUpdate } from './screens/Tab5Screen';
 import Tab1Detail from './screens/Tab1Detail';
 import Modal1Screen from './screens/Modal1Screen';
 
@@ -121,6 +121,21 @@ export default function App() {
           <Stack.Screen name="ModalCreate" component={ModalCreate}
             options={({ navigation }) => ({
               title: '회원추가',
+              headerTitleAlign: 'center',
+              headerLeft: () => (<></>),
+              headerRight: () => (
+                <Pressable onPress={() => navigation.goBack()}>
+                  <FontAwesome
+                    name="close"
+                    size={25}
+                  />
+                </Pressable>
+              )
+            })}
+          />
+          <Stack.Screen name="ModalUpdate" component={ModalUpdate}
+            options={({ navigation }) => ({
+              title: '회원수정',
               headerTitleAlign: 'center',
               headerLeft: () => (<></>),
               headerRight: () => (
