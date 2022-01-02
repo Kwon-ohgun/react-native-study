@@ -8,7 +8,7 @@ import Tab1Screen from './screens/Tab1Screen';
 import Tab2Screen from './screens/Tab2Screen';
 import Tab3Screen from './screens/Tab3Screen';
 import Tab4Screen from './screens/Tab4Screen';
-import Tab5Screen from './screens/Tab5Screen';
+import Tab5Screen, { ModalCreate } from './screens/Tab5Screen';
 import Tab1Detail from './screens/Tab1Detail';
 import Modal1Screen from './screens/Modal1Screen';
 
@@ -71,15 +71,25 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Tab5"
         component={Tab5Screen}
-        options={{
+        options={({ navigation }) => ({
           title: '마이페이지',
           tabBarLabel: '마이페이지',
           headerTitleAlign: 'center',
+          headerRight: () => (
+            <Pressable onPress={() => navigation.navigate('ModalCreate')}>
+              <FontAwesome
+                name="pencil"
+                size={25}
+                style={{color: '#4285F4', marginRight: 24}}
+              />
+            </Pressable>
+          ),
+
           tabBarIcon: () => <FontAwesome
             name="barcode"
             size={24}
           />
-        }}
+        })}
       />
     </BottomTab.Navigator>
   );
@@ -96,6 +106,21 @@ export default function App() {
           <Stack.Screen name="Modal1" component={Modal1Screen}
             options={({ navigation }) => ({
               title: '모달창',
+              headerTitleAlign: 'center',
+              headerLeft: () => (<></>),
+              headerRight: () => (
+                <Pressable onPress={() => navigation.goBack()}>
+                  <FontAwesome
+                    name="close"
+                    size={25}
+                  />
+                </Pressable>
+              )
+            })}
+          />
+          <Stack.Screen name="ModalCreate" component={ModalCreate}
+            options={({ navigation }) => ({
+              title: '회원추가',
               headerTitleAlign: 'center',
               headerLeft: () => (<></>),
               headerRight: () => (
