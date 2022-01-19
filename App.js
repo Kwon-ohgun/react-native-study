@@ -11,6 +11,8 @@ import Tab4Screen from './screens/Tab4Screen';
 import Tab5Screen, { ModalCreate, ModalUpdate } from './screens/Tab5Screen';
 import Tab1Detail from './screens/Tab1Detail';
 import Modal1Screen from './screens/Modal1Screen';
+import { Provider } from 'mobx-react';
+import { membersStore } from './stores/MembersStore.js';
 
 const BottomTab = createBottomTabNavigator();
 function BottomTabNavigator() {
@@ -98,58 +100,62 @@ function BottomTabNavigator() {
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="Tab1Detail" component={Tab1Detail} />
-        <Stack.Group screenOptions={{ presentation: 'modal' }}>
-          <Stack.Screen name="Modal1" component={Modal1Screen}
-            options={({ navigation }) => ({
-              title: '모달창',
-              headerTitleAlign: 'center',
-              headerLeft: () => (<></>),
-              headerRight: () => (
-                <Pressable onPress={() => navigation.goBack()}>
-                  <FontAwesome
-                    name="close"
-                    size={25}
-                  />
-                </Pressable>
-              )
-            })}
-          />
-          <Stack.Screen name="ModalCreate" component={ModalCreate}
-            options={({ navigation }) => ({
-              title: '회원추가',
-              headerTitleAlign: 'center',
-              headerLeft: () => (<></>),
-              headerRight: () => (
-                <Pressable onPress={() => navigation.goBack()}>
-                  <FontAwesome
-                    name="close"
-                    size={25}
-                  />
-                </Pressable>
-              )
-            })}
-          />
-          <Stack.Screen name="ModalUpdate" component={ModalUpdate}
-            options={({ navigation }) => ({
-              title: '회원수정',
-              headerTitleAlign: 'center',
-              headerLeft: () => (<></>),
-              headerRight: () => (
-                <Pressable onPress={() => navigation.goBack()}>
-                  <FontAwesome
-                    name="close"
-                    size={25}
-                  />
-                </Pressable>
-              )
-            })}
-          />
-        </Stack.Group>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider
+      membersStore={membersStore}
+    >
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="Tab1Detail" component={Tab1Detail} />
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen name="Modal1" component={Modal1Screen}
+              options={({ navigation }) => ({
+                title: '모달창',
+                headerTitleAlign: 'center',
+                headerLeft: () => (<></>),
+                headerRight: () => (
+                  <Pressable onPress={() => navigation.goBack()}>
+                    <FontAwesome
+                      name="close"
+                      size={25}
+                    />
+                  </Pressable>
+                )
+              })}
+            />
+            <Stack.Screen name="ModalCreate" component={ModalCreate}
+              options={({ navigation }) => ({
+                title: '회원추가',
+                headerTitleAlign: 'center',
+                headerLeft: () => (<></>),
+                headerRight: () => (
+                  <Pressable onPress={() => navigation.goBack()}>
+                    <FontAwesome
+                      name="close"
+                      size={25}
+                    />
+                  </Pressable>
+                )
+              })}
+            />
+            <Stack.Screen name="ModalUpdate" component={ModalUpdate}
+              options={({ navigation }) => ({
+                title: '회원수정',
+                headerTitleAlign: 'center',
+                headerLeft: () => (<></>),
+                headerRight: () => (
+                  <Pressable onPress={() => navigation.goBack()}>
+                    <FontAwesome
+                      name="close"
+                      size={25}
+                    />
+                  </Pressable>
+                )
+              })}
+            />
+          </Stack.Group>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

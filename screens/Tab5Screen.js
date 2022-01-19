@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, ScrollView, Pressable, StyleSheet, Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import {inject, observer} from 'mobx-react';
 
 const styles = StyleSheet.create({
   thead: {
@@ -30,7 +31,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Tab5Screen({ navigation }) {
+function Tab5Screen({ navigation, membersStore }) {
+  console.log(membersStore);
+  const members = membersStore.members;
   return (
     <>
       <View name="thead" style={styles.thead}>
@@ -42,345 +45,47 @@ export default function Tab5Screen({ navigation }) {
         </View>
       </View>
       <ScrollView name="tbody" style={styles.tbody}>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {
-            navigation.navigate('ModalUpdate')
-          }}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {
-            Alert.alert(
-              "Delete member",
-              "삭제 하시겠습니까?",
-              [
-                {
-                  text: "Cancel",
-                  onPress: () => console.log("Cancel Pressed"),
-                  style: "cancel"
-                },
-                { text: "OK", onPress: () => console.log("OK Pressed") }
-              ]
-            );
-          }}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.column}>홍길동</Text>
-          <Text style={styles.column}>39</Text>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="edit"
-              size={24}
-              style={[styles.column, { color: '#FBBC05' }]}
-            />
-          </Pressable>
-          <Pressable style={styles.column} onPress={() => {}}>
-            <FontAwesome
-              name="trash"
-              size={24}
-              style={[styles.column, { color: '#EA4335'}]}
-            />
-          </Pressable>
-        </View>
+        {members.map((member, index) => (
+          <View key={index} style={styles.row}>
+            <Text style={styles.column}>{member.name}</Text>
+            <Text style={styles.column}>{member.age}</Text>
+            <Pressable style={styles.column} onPress={() => {
+              navigation.navigate('ModalUpdate')
+            }}>
+              <FontAwesome
+                name="edit"
+                size={24}
+                style={[styles.column, { color: '#FBBC05' }]}
+              />
+            </Pressable>
+            <Pressable style={styles.column} onPress={() => {
+              Alert.alert(
+                "Delete member",
+                "삭제 하시겠습니까?",
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => {
+                      members.push({
+                        name: '세민',
+                        age: 42
+                      });
+                      console.log(members);
+                    },
+                    style: "cancel"
+                  },
+                  { text: "OK", onPress: () => console.log("OK Pressed") }
+                ]
+              );
+            }}>
+              <FontAwesome
+                name="trash"
+                size={24}
+                style={[styles.column, { color: '#EA4335'}]}
+              />
+            </Pressable>
+          </View>
+        ))}
       </ScrollView>
     </>
   );
@@ -441,3 +146,5 @@ export function ModalUpdate({ navigation }) {
     </>
   );
 }
+
+export default inject('membersStore')(observer(Tab5Screen));
