@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, TextInput, View, ScrollView, Pressable, StyleSheet, Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import {inject, observer} from 'mobx-react';
@@ -33,7 +33,10 @@ const styles = StyleSheet.create({
 
 function Tab5Screen({ navigation, membersStore }) {
   console.log(membersStore);
-  const members = membersStore.members;
+  const { members } = membersStore;
+  useEffect(() => {
+    membersStore.membersRead();
+  }, [membersStore]);
   return (
     <>
       <View name="thead" style={styles.thead}>
