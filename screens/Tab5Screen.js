@@ -91,7 +91,8 @@ function Tab5Screen({ navigation, membersStore }) {
   );
 }
 
-export function ModalCreate({ navigation }) {
+function _ModalCreate({ navigation, membersStore }) {
+  const member = membersStore.member;
   return (
     <>
       <View name="thead" style={styles.thead}>
@@ -103,10 +104,22 @@ export function ModalCreate({ navigation }) {
       </View>
       <View name="tbody" style={styles.tbody}>
         <View style={styles.row}>
-          <TextInput style={[styles.column, styles.borderStyle]}>이름</TextInput>
-          <TextInput style={[styles.column, styles.borderStyle
-          ]}>나이</TextInput>
-          <Pressable style={styles.column} onPress={() => {}}>
+          <TextInput
+            style={[styles.column, styles.borderStyle]}
+            value={member.name}
+            onChangeText={text => member.name = text}
+            placeholder='이름'
+          ></TextInput>
+          <TextInput
+            style={[styles.column, styles.borderStyle]}
+            value={member.age}
+            onChangeText={text => member.age = text}
+            placeholder='나이'
+          ></TextInput>
+          <Pressable style={styles.column} onPress={() => {
+            membersStore.membersCreate();
+            navigation.goBack();
+          }}>
             <FontAwesome
               name="pencil"
               size={24}
@@ -148,3 +161,4 @@ export function ModalUpdate({ navigation }) {
 }
 
 export default inject('membersStore')(observer(Tab5Screen));
+export const ModalCreate = inject('membersStore')(observer(_ModalCreate));
