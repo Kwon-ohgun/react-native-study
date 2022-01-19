@@ -53,7 +53,7 @@ function Tab5Screen({ navigation, membersStore }) {
             <Text style={styles.column}>{member.name}</Text>
             <Text style={styles.column}>{member.age}</Text>
             <Pressable style={styles.column} onPress={() => {
-              navigation.navigate('ModalUpdate')
+              navigation.navigate('ModalUpdate', index)
             }}>
               <FontAwesome
                 name="edit"
@@ -129,7 +129,10 @@ function _ModalCreate({ navigation, membersStore }) {
   );
 }
 
-export function ModalUpdate({ navigation }) {
+export function _ModalUpdate(props) {
+  console.log(props.route.params)
+  const { navigation, membersStore, route } = props;
+  const { index } = route;
   return (
     <>
       <View name="thead" style={styles.thead}>
@@ -159,3 +162,4 @@ export function ModalUpdate({ navigation }) {
 
 export default inject('membersStore')(observer(Tab5Screen));
 export const ModalCreate = inject('membersStore')(observer(_ModalCreate));
+export const ModalUpdate = inject('membersStore')(observer(_ModalUpdate));
