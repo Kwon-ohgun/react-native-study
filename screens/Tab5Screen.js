@@ -68,16 +68,10 @@ function Tab5Screen({ navigation, membersStore }) {
                 [
                   {
                     text: "Cancel",
-                    onPress: () => {
-                      members.push({
-                        name: '세민',
-                        age: 42
-                      });
-                      console.log(members);
-                    },
+                    onPress: () => {},
                     style: "cancel"
                   },
-                  { text: "OK", onPress: () => console.log("OK Pressed") }
+                  { text: "OK", onPress: () => membersStore.membersDelete(index) }
                 ]
               );
             }}>
