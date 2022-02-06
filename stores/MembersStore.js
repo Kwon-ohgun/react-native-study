@@ -43,8 +43,12 @@ export default class MembersStore {
     });
   }
   membersUdate(index, member) {
-    this.members[index] = member;
-    console.log('Done membersUpdate', this.members);
+    axios.patch('http://192.168.152.106:3100/api/v1/members/' + index, member).then((response) => {
+      console.log('Done membersUpdate', response);
+      this.membersRead();
+    }).catch((error) => {
+      axiosError(error);
+    });
   }
 }
 
