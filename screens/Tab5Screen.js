@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, TextInput, View, ScrollView, Pressable, StyleSheet, Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import {inject, observer} from 'mobx-react';
@@ -33,7 +33,10 @@ const styles = StyleSheet.create({
 
 function Tab5Screen({ navigation, membersStore }) {
   console.log(membersStore);
-  const members = membersStore.members;
+  const { members } = membersStore;
+  useEffect(() => {
+    membersStore.membersRead();
+  }, [membersStore]);
   return (
     <>
       <View name="thead" style={styles.thead}>
@@ -50,7 +53,7 @@ function Tab5Screen({ navigation, membersStore }) {
             <Text style={styles.column}>{member.name}</Text>
             <Text style={styles.column}>{member.age}</Text>
             <Pressable style={styles.column} onPress={() => {
-              navigation.navigate('ModalUpdate')
+              navigation.navigate('ModalUpdate', index)
             }}>
               <FontAwesome
                 name="edit"
@@ -65,16 +68,10 @@ function Tab5Screen({ navigation, membersStore }) {
                 [
                   {
                     text: "Cancel",
-                    onPress: () => {
-                      members.push({
-                        name: '세민',
-                        age: 42
-                      });
-                      console.log(members);
-                    },
+                    onPress: () => {},
                     style: "cancel"
                   },
-                  { text: "OK", onPress: () => console.log("OK Pressed") }
+                  { text: "OK", onPress: () => membersStore.membersDelete(index) }
                 ]
               );
             }}>
@@ -91,7 +88,8 @@ function Tab5Screen({ navigation, membersStore }) {
   );
 }
 
-export function ModalCreate({ navigation }) {
+function _ModalCreate({ navigation, membersStore }) {
+  const member = membersStore.member;
   return (
     <>
       <View name="thead" style={styles.thead}>
@@ -103,10 +101,22 @@ export function ModalCreate({ navigation }) {
       </View>
       <View name="tbody" style={styles.tbody}>
         <View style={styles.row}>
-          <TextInput style={[styles.column, styles.borderStyle]}>이름</TextInput>
-          <TextInput style={[styles.column, styles.borderStyle
-          ]}>나이</TextInput>
-          <Pressable style={styles.column} onPress={() => {}}>
+          <TextInput
+            style={[styles.column, styles.borderStyle]}
+            value={member.name}
+            onChangeText={text => member.name = text}
+            placeholder='이름'
+          ></TextInput>
+          <TextInput
+            style={[styles.column, styles.borderStyle]}
+            value={member.age}
+            onChangeText={text => member.age = text}
+            placeholder='나이'
+          ></TextInput>
+          <Pressable style={styles.column} onPress={() => {
+            membersStore.membersCreate();
+            navigation.goBack();
+          }}>
             <FontAwesome
               name="pencil"
               size={24}
@@ -119,7 +129,10 @@ export function ModalCreate({ navigation }) {
   );
 }
 
-export function ModalUpdate({ navigation }) {
+export function _ModalUpdate(props) {
+  const { navigation, membersStore, route } = props;
+  const { params } = route;
+  const member = membersStore.members[params];
   return (
     <>
       <View name="thead" style={styles.thead}>
@@ -131,10 +144,22 @@ export function ModalUpdate({ navigation }) {
       </View>
       <View name="tbody" style={styles.tbody}>
         <View style={styles.row}>
-          <TextInput style={[styles.column, styles.borderStyle]}>이름</TextInput>
-          <TextInput style={[styles.column, styles.borderStyle
-          ]}>나이</TextInput>
-          <Pressable style={styles.column} onPress={() => {}}>
+          <TextInput
+            style={[styles.column, styles.borderStyle]}
+            value={member.name}
+            onChangeText={text => member.name = text}
+            placeholder='이름'
+          ></TextInput>
+          <TextInput
+            style={[styles.column, styles.borderStyle]}
+            value={String(member.age)}
+            onChangeText={text => member.age = text}
+            placeholder='나이'
+          ></TextInput>
+          <Pressable style={styles.column} onPress={() => {
+            membersStore.membersUdate(params, member);
+            navigation.goBack();
+          }}>
             <FontAwesome
               name="edit"
               size={24}
@@ -148,3 +173,5 @@ export function ModalUpdate({ navigation }) {
 }
 
 export default inject('membersStore')(observer(Tab5Screen));
+export const ModalCreate = inject('membersStore')(observer(_ModalCreate));
+export const ModalUpdate = inject('membersStore')(observer(_ModalUpdate));

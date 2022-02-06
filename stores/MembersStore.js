@@ -10,10 +10,7 @@ export default class MembersStore {
     makeAutoObservable(this);
   }
 
-  members = [{
-    name: 'semin',
-    age: 10
-  }];
+  members = [];
   member = {
     name: '',
     age: ''
@@ -25,6 +22,24 @@ export default class MembersStore {
       age: this.member.age
     });
     console.log('Done membersCreate', this.members);
+  }
+  membersRead() {
+    this.members = [{
+      name: '홍길동',
+      age: 20
+    }, {
+      name: '춘향이',
+      age: 16
+    }];
+    console.log('Done membersRead', this.members);
+  }
+  membersDelete(index) {
+    this.members.splice(index, 1);
+    console.log('Done membersDelete', this.members);
+  }
+  membersUdate(index, member) {
+    this.members[index] = member;
+    console.log('Done membersUpdate', this.members);
   }
 }
 
