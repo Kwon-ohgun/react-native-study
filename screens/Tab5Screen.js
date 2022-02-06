@@ -130,9 +130,9 @@ function _ModalCreate({ navigation, membersStore }) {
 }
 
 export function _ModalUpdate(props) {
-  console.log(props.route.params)
   const { navigation, membersStore, route } = props;
-  const { index } = route;
+  const { params } = route;
+  const member = membersStore.members[params];
   return (
     <>
       <View name="thead" style={styles.thead}>
@@ -144,10 +144,22 @@ export function _ModalUpdate(props) {
       </View>
       <View name="tbody" style={styles.tbody}>
         <View style={styles.row}>
-          <TextInput style={[styles.column, styles.borderStyle]}>이름</TextInput>
-          <TextInput style={[styles.column, styles.borderStyle
-          ]}>나이</TextInput>
-          <Pressable style={styles.column} onPress={() => {}}>
+          <TextInput
+            style={[styles.column, styles.borderStyle]}
+            value={member.name}
+            onChangeText={text => member.name = text}
+            placeholder='이름'
+          ></TextInput>
+          <TextInput
+            style={[styles.column, styles.borderStyle]}
+            value={String(member.age)}
+            onChangeText={text => member.age = text}
+            placeholder='나이'
+          ></TextInput>
+          <Pressable style={styles.column} onPress={() => {
+            membersStore.membersUdate(params, member);
+            navigation.goBack();
+          }}>
             <FontAwesome
               name="edit"
               size={24}

@@ -37,6 +37,10 @@ export default class MembersStore {
     this.members.splice(index, 1);
     console.log('Done membersDelete', this.members);
   }
+  membersUdate(index, member) {
+    this.members[index] = member;
+    console.log('Done membersUpdate', this.members);
+  }
 }
 
 export const membersStore = new MembersStore();
