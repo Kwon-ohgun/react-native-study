@@ -35,8 +35,12 @@ export default class MembersStore {
     });
   }
   membersDelete(index) {
-    this.members.splice(index, 1);
-    console.log('Done membersDelete', this.members);
+    axios.delete('http://192.168.152.106:3100/api/v1/members/' + index).then((response) => {
+      console.log('Done membersDelete', response);
+      this.membersRead();
+    }).catch((error) => {
+      axiosError(error);
+    });
   }
   membersUdate(index, member) {
     this.members[index] = member;
