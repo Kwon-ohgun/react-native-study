@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, TextInput, View, ScrollView, Pressable, StyleSheet, Alert } from 'react-native';
+import { Text, TextInput, View, ScrollView, Pressable, StyleSheet, Alert, RefreshControl } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import {inject, observer} from 'mobx-react';
 
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
 function Tab5Screen({ navigation, membersStore }) {
   console.log(membersStore);
-  const { members } = membersStore;
+  const { members, isLoding } = membersStore;
   useEffect(() => {
     membersStore.membersRead();
   }, [membersStore]);
@@ -47,7 +47,14 @@ function Tab5Screen({ navigation, membersStore }) {
           <Text style={styles.column}>삭제</Text>
         </View>
       </View>
-      <ScrollView name="tbody" style={styles.tbody}>
+      <ScrollView name="tbody" style={styles.tbody}
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoding}
+            onRefresh={() => {membersStore.membersRead()}}
+          />
+        }
+      >
         {members.map((member, index) => (
           <View key={index} style={styles.row}>
             <Text style={styles.column}>{member.name}</Text>
