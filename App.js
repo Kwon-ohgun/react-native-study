@@ -77,19 +77,19 @@ function BottomTabNavigator() {
           title: '마이페이지',
           tabBarLabel: '마이페이지',
           headerTitleAlign: 'center',
-          headerRight: () => (
-            <Pressable onPress={() => navigation.navigate('ModalCreate')}>
-              <FontAwesome
-                name="pencil"
-                size={25}
-                style={{color: '#4285F4', marginRight: 24}}
-              />
-            </Pressable>
-          ),
+            headerRight: () => (
+              <Pressable onPress={() => navigation.navigate('ModalCreate')}>
+                <FontAwesome
+                  name="pencil"
+                  size={25}
+                  style={{color: '#4285F4', marginRight: 24}}
+                />
+              </Pressable>
+            ),
 
-          tabBarIcon: () => <FontAwesome
-            name="barcode"
-            size={24}
+              tabBarIcon: () => <FontAwesome
+              name="barcode"
+              size={24}
           />
         })}
       />

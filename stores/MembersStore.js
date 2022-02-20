@@ -12,6 +12,7 @@ export default class MembersStore {
     makeAutoObservable(this);
   }
 
+  isLoding = false;
   members = [];
   member = {
     name: '',
@@ -19,7 +20,7 @@ export default class MembersStore {
   };
 
   membersCreate() {
-    axios.post('http://192.168.152.106:3100/api/v1/members', this.member).then((response) => {
+    axios.post('http://192.168.0.39:3100/api/v1/members', this.member).then((response) => {
       console.log('Done membersCreate', response);
       this.membersRead();
     }).catch((error) => {
@@ -27,15 +28,17 @@ export default class MembersStore {
     });
   }
   membersRead() {
-    axios.get('http://192.168.152.106:3100/api/v1/members').then((response) => {
+    this.isLoding = true;
+    axios.get('http://192.168.0.39:3100/api/v1/members').then((response) => {
       console.log('Done membersRead', response);
       this.members = response.data.members;
+      this.isLoding = false;
     }).catch((error) => {
       axiosError(error);
     });
   }
   membersDelete(index) {
-    axios.delete('http://192.168.152.106:3100/api/v1/members/' + index).then((response) => {
+    axios.delete('http://192.168.0.39:3100/api/v1/members/' + index).then((response) => {
       console.log('Done membersDelete', response);
       this.membersRead();
     }).catch((error) => {
@@ -43,7 +46,7 @@ export default class MembersStore {
     });
   }
   membersUdate(index, member) {
-    axios.patch('http://192.168.152.106:3100/api/v1/members/' + index, member).then((response) => {
+    axios.patch('http://192.168.0.39:3100/api/v1/members/' + index, member).then((response) => {
       console.log('Done membersUpdate', response);
       this.membersRead();
     }).catch((error) => {
