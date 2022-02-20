@@ -119,6 +119,7 @@ function _ModalCreate({ navigation, membersStore }) {
             value={member.age}
             onChangeText={text => member.age = text}
             placeholder='나이'
+            keyboardType='number-pad'
           ></TextInput>
           <Pressable style={styles.column} onPress={() => {
             membersStore.membersCreate();
@@ -162,6 +163,7 @@ export function _ModalUpdate(props) {
             value={String(member.age)}
             onChangeText={text => member.age = text}
             placeholder='나이'
+            keyboardType='number-pad'
           ></TextInput>
           <Pressable style={styles.column} onPress={() => {
             membersStore.membersUdate(params, member);
